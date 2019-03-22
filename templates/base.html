@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Social Clone</title>
+    <link rel="stylesheet" href="{% static 'SocialClone/css/codepen.css'%}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+    <body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
+    <div class="container">
+      <a class="nav navbar-brand" href="{% url 'home' %}">Star Social</a>
+        <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{%url 'posts:create'%}">Post</a></li>
+        <li class="nav-item"><a class="nav-link" href="{%url 'groups:all'%}">Group</a></li>
+        <li class="nav-item"><a class="nav-link" href="{%url 'groups:create'%}">Create Group</a></li>
+        <li class="nav-item"><a class="nav-link" href="{%url 'accounts:logout'%}">Log Out</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'groups:all'%}">Groups</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login'%}">Log In</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup'%}">Sign Up</a></li>
+        {% endif%}
+      </ul>
+    </div>
+  </nav>
+</div>
+
+    {% block content %}
+    {% endblock %}
+
+  </body>
+
+
+
+</html>
